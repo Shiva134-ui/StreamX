@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamX Admin - Upload Movies</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="../css/core/variables.css">
+    <link rel="stylesheet" href="../css/core/layout.css">
+    <link rel="stylesheet" href="../css/pages/admin.css">
+    <link rel="icon" type="image/png" href="../assets/img/fav-icon.png">
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebar_overlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <span class="close-sidebar" id="close_sidebar">&times;</span>
+            <div class="logo">
+                <h2>Stream<span>X</span> Admin</h2>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="bi bi-box-arrow-left"></i> <span>Back to Site</span></a></li>
+                <li class="active" id="nav_upload"><a href="#"><i class="bi bi-cloud-upload-fill"></i> <span>Bulk
+                            Upload</span></a></li>
+                <li id="nav_admin_movies"><a href="#"><i class="bi bi-film"></i> <span>Movies</span></a></li>
+                <li id="nav_admin_series"><a href="#"><i class="bi bi-tv"></i> <span>Series</span></a></li>
+                <li id="nav_admin_users"><a href="#"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Mobile Toggle Removed -->
+
+            <div class="admin-container">
+                <div id="upload_section" class="glass-card reveal-on-scroll delay-100">
+                    
+                    <!-- Moved Stats Row Inside Here -->
+                    <div class="stats-row" style="margin-bottom: 3rem;">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="bi bi-film"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Movies</h4>
+                                <span>Loading...</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Users</h4>
+                                <span>Loading...</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="bi bi-hdd-fill"></i></div>
+                            <div class="stat-info">
+                                <h4>Storage Used</h4>
+                                <span>Calculating...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <header class="section-header" id="upload_header">
+                        <h3>Bulk Upload <span class="hide-mobile">Movies (Excel)</span></h3>
+                        <div class="header-actions">
+                            <button class="btn-primary" id="upload_db_btn" disabled>
+                                <i class="bi bi-cloud-check"></i> <span>Upload to Database</span>
+                            </button>
+                        </div>
+                    </header>
+
+                    <div class="upload-area" id="drop_zone">
+                        <div class="upload-icon-wrapper">
+                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                        </div>
+                        <h3>Drag & Drop Excel File Here</h3>
+                        <p>or click to browse (.xlsx)</p>
+                        <input type="file" id="file_input" accept=".xlsx, .xls, .csv" hidden>
+                    </div>
+
+                    <div class="divider"><span>OR</span></div>
+
+                    <div class="gsheet-section">
+                        <h3>Import from Google Sheet</h3>
+                        <p class="gsheet-desc">Make sure the sheet is "Public" or "Published to Web"</p>
+                        <div class="gsheet-input-wrapper">
+                            <input type="text" id="gsheet_url" placeholder="Paste Google Sheet URL" class="gsheet-input">
+                            <button class="btn-primary" id="fetch_gsheet_btn">Fetch Data</button>
+                        </div>
+                    </div>
+
+                     <div class="divider"><span>OR</span></div>
+
+                    <div class="direct-input-section" style="margin-top: 20px;">
+                        <h3>Direct Input (JSON)</h3>
+                        <p class="gsheet-desc">Paste your movie data here as a JSON Array.</p>
+                        <textarea id="direct_input" rows="5"
+                            placeholder='[{"name": "Movie Title", "genre": "Action", "year": 2024, "bposter": "url...", "sposter": "url...", "link": "url..."}]'
+                            class="code-input"></textarea>
+                        <button class="btn-primary" id="parse_direct_btn" style="margin-top: 10px;">Parse Data</button>
+                    </div>
+
+                    <div id="preview_container">
+                        <!-- Table injected here -->
+                    </div>
+                </div>
+
+                <!-- Manage Movies Section -->
+                <div id="manage_section" class="hidden glass-card reveal-on-scroll delay-200">
+                    <header class="section-header">
+                        <h3 id="manage_title">Manage Movies</h3>
+                        <div class="header-actions">
+                            <div class="search-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="admin_search" placeholder="Search by name...">
+                            </div>
+                            <button class="btn-primary" id="add_new_btn">
+                                <i class="bi bi-plus-lg"></i> <span>Add New</span>
+                            </button>
+                        </div>
+                    </header>
+                    <div id="movies_list_container">
+                        <div class="table-responsive">
+                            <table class="preview-table" id="preview_table">
+                                <thead>
+                                    <tr id="table_header"></tr>
+                                </thead>
+                                <tbody id="table_body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Users Section -->
+                <div id="users_section" class="hidden glass-card reveal-on-scroll delay-200">
+                    <header class="section-header">
+                        <h3>Manage Users</h3>
+                        <div class="header-actions">
+                            <div class="search-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="admin_user_search" placeholder="Search users...">
+                            </div>
+                        </div>
+                    </header>
+                    <div id="users_list_container">
+                        <div class="table-responsive" id="users_list">
+                            <!-- User Table Injected Here -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit_modal" class="modal hidden animate-fade-in">
+        <div class="modal-content admin-edit-modal">
+            <div class="modal-header">
+                <h3 id="modal_title">Edit Details</h3>
+                <span class="close-modal" id="close_edit">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit_form" class="admin-edit-form">
+                    <input type="hidden" id="edit_id">
+
+                    <div class="form-group">
+                        <label>Content Title</label>
+                        <input type="text" id="edit_name" placeholder="Title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Release Year</label>
+                        <input type="text" id="edit_year" placeholder="Year">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <input type="text" id="edit_genre" placeholder="e.g. Action, Sci-Fi" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>IMDB Rating</label>
+                        <input type="text" id="edit_rating" placeholder="e.g. 8.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content Type</label>
+                        <select id="edit_type">
+                            <option value="movie">Movie</option>
+                            <option value="series">Series</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>File Size (GB)</label>
+                        <input type="number" id="edit_size" placeholder="e.g. 2.5" step="0.1" min="0">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Small Poster URL</label>
+                        <input type="text" id="edit_sposter" placeholder="Small Poster URL" style="background-image: none;">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Big Poster / Backdrop URL</label>
+                        <input type="text" id="edit_bposter" placeholder="Big Poster / Backdrop URL">
+                    </div>
+
+
+                    <!-- Dynamic Video Sources -->
+                    <div class="form-group full-width">
+                        <label>Video Sources (Languages)</label>
+                        <div id="sources_container" class="sources-list">
+                            <!-- Dynamic Rows Will Be Injected Here -->
+                        </div>
+                        <button type="button" id="add_source_btn" class="btn-outline-sm mt-2">+ Add Language Source</button>
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label>Content Description</label>
+                        <textarea id="edit_desc" rows="4" placeholder="Description"></textarea>
+                    </div>
+
+                    <!-- Legacy JSON Input (Hidden) -->
+                    <textarea id="edit_seasons" rows="6" class="hidden" style="display: none;"></textarea>
+
+                    <!-- NEW: Series Builder -->
+                    <div id="series_builder" class="hidden series-builder-card">
+                        <div class="sb-header">
+                            <h4>Series Episodes</h4>
+                            <button type="button" id="add_season_btn" class="btn-outline-sm">+ Add Season</button>
+                        </div>
+                        <div id="sb_container">
+                            <!-- Helper will inject seasons here -->
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-block">
+                        <i class="bi bi-check2-circle"></i> Save All Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Users Modal -->
+    <div id="edit_user_modal" class="modal hidden">
+        <div class="admin-edit-modal">
+            <div class="modal-header">
+                <h3>Edit User</h3>
+                <span class="close-modal" id="close_user_modal">&times;</span>
+            </div>
+            <form id="edit_user_form" class="admin-edit-form">
+                <input type="hidden" id="edit_user_id">
+                
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label>Display Name</label>
+                        <input type="text" id="edit_user_name" placeholder="User Name" required>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Profile Photo URL</label>
+                    <input type="text" id="edit_user_photo" placeholder="https://example.com/photo.jpg">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Email (Read Only)</label>
+                    <input type="email" id="edit_user_email" readonly disabled style="opacity: 0.6; cursor: not-allowed;">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>User Role</label>
+                        <select id="edit_user_role">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="edit_user_status">
+                            <option value="active">Active</option>
+                            <option value="banned">Banned</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <label>Send Notification</label>
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                        <textarea id="notify_user_msg" placeholder="Type a message to send to this user..." rows="2" style="flex: 1; min-height: 50px; resize: vertical;"></textarea>
+                        <button type="button" id="btn_send_notify" class="btn-outline-sm" style="height: 50px; padding: 0 1.5rem;">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">
+                    <i class="bi bi-save"></i> Save Changes
+                </button>
+
+                <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
+                    <button type="button" id="modal_delete_user_btn" class="btn-delete" style="width: 100%; justify-content: center; padding: 14px;">
+                        <i class="bi bi-trash"></i> Permanently Delete User
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- End .admin-container -->
+    </div> <!-- End .app-container -->
+    <nav class="bottom-nav">
+        <button class="bottom-nav-item" onclick="window.location.href='../index.html'">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Back</span>
+        </button>
+        <button class="bottom-nav-item active" id="mobile_nav_upload">
+            <i class="bi bi-cloud-upload-fill"></i>
+            <span>Upload</span>
+        </button>
+        <button class="bottom-nav-item" id="mobile_nav_movies">
+            <i class="bi bi-film"></i>
+            <span>Movies</span>
+        </button>
+        <button class="bottom-nav-item" id="mobile_nav_series">
+            <i class="bi bi-tv"></i>
+            <span>Series</span>
+        </button>
+        <button class="bottom-nav-item" id="mobile_nav_users">
+            <i class="bi bi-people-fill"></i>
+            <span>Users</span>
+        </button>
+    </nav>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <!-- Scripts -->
+    <script type="module" src="../js/pages/admin.js"></script>
+</body>
+
+</html>

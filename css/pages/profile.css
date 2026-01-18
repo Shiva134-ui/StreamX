@@ -1,0 +1,321 @@
+
+/* --- Profile Header --- */
+/* --- Profile Header (Master Premium) --- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem;
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 20px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(229, 9, 20, 0.15), transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.profile-header > * {
+    position: relative;
+    z-index: 1;
+}
+
+.profile-img-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.3);
+    transition: 0.5s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05) rotate(5deg);
+    border-color: var(--primary);
+    box-shadow: 0 0 50px var(--primary-glow);
+}
+
+.edit-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid #1a1a1a;
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.5);
+}
+
+.edit-badge:hover {
+    transform: scale(1.2) rotate(90deg);
+    background: white;
+    color: var(--primary);
+}
+
+.profile-info h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, #fff, #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.profile-info p {
+    color: #bbb;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* --- Profile Tabs (Futuristic) --- */
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem;
+    border-radius: 50px;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 2.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
+    cursor: pointer;
+    position: relative;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tab-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+    color: white;
+    background: var(--primary);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+    transform: translateY(-1px);
+}
+
+.tab-btn.active::after { display: none; } /* Remove old underline */
+
+/* --- Activity Items (Cards) --- */
+.activity-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    margin-bottom: 1.2rem;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+.activity-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(10px) scale(1.01);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.activity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(229, 9, 20, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.4rem;
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.15);
+    transition: 0.4s;
+}
+
+.activity-item:hover .activity-icon {
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    transform: rotate(360deg);
+}
+
+/* --- Watchlist Grid Override for Profile --- */
+#profile_watchlist_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+#profile_watchlist_grid .movie-card {
+    min-width: 0; /* Override global 200px min-width */
+    height: 260px; /* Slightly smaller than main grid */
+}
+
+.btn-remove-watchlist {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-remove-watchlist:hover {
+    background: var(--primary);
+}
+
+/* --- Mobile Responsiveness --- */
+@media screen and (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .profile-img-container {
+        margin: 0 auto;
+    }
+    
+    .profile-tabs {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    #profile_watchlist_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- Edit Profile Modal Styling --- */
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.profile-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile-input-group label {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.profile-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.2);
+    outline: none;
+}
+
+.divider-text {
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    margin: 5px 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Custom File Upload */
+.hidden-file-input {
+    display: none;
+}
+
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.custom-file-upload:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    color: white;
+}
+
+.custom-file-upload i {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.full-width {
+    width: 100%;
+}

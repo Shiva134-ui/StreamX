@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamX - Premium Movies</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="css/core/variables.css">
+    <link rel="stylesheet" href="css/core/layout.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+    <link rel="icon" type="image/png" href="assets/img/fav-icon.png">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebar_overlay"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <span class="close-sidebar" id="close_sidebar"><i class="bi bi-x-lg"></i></span>
+            <div class="logo">
+                <h2>Stream<span>X</span></h2>
+            </div>
+
+            <ul class="nav-links">
+                <li class="active" id="nav_home"><a href="#"><i class="bi bi-house-door-fill"></i> <span>Home</span></a>
+                </li>
+                <li id="nav_movies"><a href="#"><i class="bi bi-film"></i> <span>Movies</span></a></li>
+                <li id="nav_series"><a href="#"><i class="bi bi-tv-fill"></i> <span>Series</span></a></li>
+                <li id="nav_watchlist"><a href="#"><i class="bi bi-bookmark-heart-fill"></i> <span>Watchlist</span></a>
+                </li>
+            </ul>
+
+            <div class="user-profile">
+                <div class="user-info" onclick="window.location.href='pages/profile.html'" style="cursor: pointer;">
+                    <img src="assets/img/user.jpg" alt="User" id="user_avatar"
+                        onerror="this.src='https://via.placeholder.com/40'">
+                    <span id="user_name">Guest</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header>
+
+
+
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search for movies, series...">
+                    <div class="search-results" id="search_results"></div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="notification-wrapper" style="position: relative;">
+                        <button class="btn-icon" id="notification_btn">
+                            <i class="bi bi-bell"></i>
+                            <span id="notif_badge" class="notif-badge hidden"></span>
+                        </button>
+                        <div id="notification_dropdown" class="notification-dropdown glass-card hidden">
+                            <div class="notif-header">
+                                <span>Notifications</span>
+                                <button id="mark_all_read" class="text-btn">Mark all read</button>
+                            </div>
+                            <div id="notif_list" class="notif-list">
+                                <!-- Items injected here -->
+                                <p class="empty-notif">No new notifications</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="header_profile" style="display: none; align-items: center; gap: 10px; cursor: pointer;">
+                        <img id="header_avatar" src="assets/img/user.jpg"
+                            style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);">
+                    </div>
+                    <button class="btn-primary" id="login_btn">Sign In</button>
+                </div>
+            </header>
+            
+
+            <!-- Dynamic Content -->
+            <div id="content_area">
+                <!-- Hero Section (Will be injected by JS) -->
+                <section class="hero reveal-on-scroll" id="hero_section">
+                    <div class="hero-content">
+                        <h1 id="hero_title">Loading...</h1>
+                        <p id="hero_desc"></p>
+                        <div class="hero-btns">
+                            <button class="btn-playing"><i class="bi bi-play-fill"></i> Watch Now</button>
+                            <button class="btn-glass"><i class="bi bi-plus-lg"></i> My List</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Movies Horizontal Scroll -->
+                <section class="category-section reveal-on-scroll">
+                    <div class="section-header">
+                        <h3>Popular Now</h3>
+                        <div class="nav-arrows">
+                            <i class="bi bi-chevron-left"></i>
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="movie-row" id="popular_movies">
+                        <!-- Movie Cards Injected Here -->
+                    </div>
+                </section>
+
+                <section class="grid-section hidden reveal-on-scroll" id="movies_grid">
+                    <div class="grid-header">
+                        <h3 id="grid_title">All Movies</h3>
+                        <div id="grid_actions"></div>
+                    </div>
+                    <div class="grid-container" id="grid_container">
+                        <!-- Grid Items -->
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-item active" data-view="home">
+                <i class="bi bi-house-door-fill"></i>
+                <span>Home</span>
+            </button>
+            <button class="bottom-nav-item" data-view="movies">
+                <i class="bi bi-film"></i>
+                <span>Movies</span>
+            </button>
+            <button class="bottom-nav-item" data-view="series">
+                <i class="bi bi-tv-fill"></i>
+                <span>Series</span>
+            </button>
+            <button class="bottom-nav-item" data-view="watchlist">
+                <i class="bi bi-bookmark-heart-fill"></i>
+                <span>Watchlist</span>
+            </button>
+        </nav>
+
+        <!-- Modals -->
+        <div id="modal_container"></div>
+        <div id="video_player_container"></div>
+
+        <!-- Scripts -->
+    <script type="module" src="js/pages/app.js"></script>
+</body>
+
+</html>
