@@ -1,6 +1,7 @@
 # 🎬 StreamX — Premium Video Streaming & Content Management Platform
 
 <p align="left">
+  <a href="https://streamx.madesh.in/"><img src="https://img.shields.io/badge/Live_Demo-streamx.madesh.in-E50914?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Demo" /></a>
   <img src="https://img.shields.io/badge/StreamX-v1.0.0-E50914?style=for-the-badge&logo=netflix&logoColor=white" alt="StreamX Version" />
   <img src="https://img.shields.io/badge/Build-Passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status" />
   <img src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript ES6+" />
@@ -9,6 +10,7 @@
 </p>
 
 StreamX is a lightweight, zero-framework, production-ready video streaming and web management application. Built entirely with Vanilla HTML5, CSS3 Glassmorphism design system, and ES6 JavaScript Modules, StreamX delivers a fluid, Netflix-grade streaming experience powered by a Firebase Firestore backend, real-time auth, multi-language audio source management, interactive media playback, and an administrative bulk-ingestion engine.
+
 
 
 ---
@@ -98,11 +100,13 @@ Unlike typical client-heavy web applications that rely on heavy frontend framewo
 
 ---
 
-## 🚀 Live Demo & Repository
+## 🚀 Live Demo & Deployment
 
-> [!TIP]
-> **GitHub Repository**: [github.com/Shiva134-ui/StreamX](https://github.com/Shiva134-ui/StreamX)  
-> *StreamX is optimized for zero-configuration static deployment on GitHub Pages, Netlify, Vercel, or Firebase Hosting.*
+> [!IMPORTANT]
+> 🌐 **Live Application**: [https://streamx.madesh.in/](https://streamx.madesh.in/)  
+> 💻 **GitHub Repository**: [https://github.com/Shiva134-ui/StreamX](https://github.com/Shiva134-ui/StreamX)  
+> *StreamX is deployed live on a custom domain with zero-configuration static serving, delivering instant page loads and full Firebase & Cloudinary cloud feature support.*
+
 
 
 ---
@@ -646,7 +650,9 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 **Madesh S**  
 *Senior Frontend & Cloud Engineer*  
+- **Live Platform**: [streamx.madesh.in](https://streamx.madesh.in/)
 - **Email**: `sivamadesh.134@gmail.com`
 - **GitHub**: [github.com/Shiva134-ui](https://github.com/Shiva134-ui)
 - **Project Repo**: [github.com/Shiva134-ui/StreamX](https://github.com/Shiva134-ui/StreamX)
+
 
