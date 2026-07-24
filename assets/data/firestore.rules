@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Check if user has 'admin' role
+    function isAdmin() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // User Profiles
+    match /users/{userId} {
+      allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+      
+      // Notification Rules
+      match /notifications/{notificationId} {
+        allow read: if request.auth != null && (request.auth.uid == userId);
+        allow write: if isAdmin();
+      }
+
+      // Continue Watching Tracker
+      match /continue_watching/{progressId} {
+        allow read, write: if request.auth != null && (request.auth.uid == userId);
+      }
+    }
+    
+    // Movies
+    match /movies/{movieId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

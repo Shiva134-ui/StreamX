@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Example Movie (Multi-Lang)",
+        "genre": "Action, Sci-Fi",
+        "year": "2024",
+        "imdb": "8.5",
+        "sposter": "https://example.com/small_poster.jpg",
+        "bposter": "https://example.com/big_poster.jpg",
+        "type": "movie",
+        "description": "An epic journey through space and time, now available in multiple languages.",
+        "sources": [
+            { "lang": "English", "url": "https://example.com/en_video.mp4", "download": "https://example.com/en_dl.mp4" },
+            { "lang": "Hindi", "url": "https://example.com/hi_video.mp4", "download": "https://example.com/hi_dl.mp4" },
+            { "lang": "Tamil", "url": "https://example.com/ta_video.mp4", "download": "https://example.com/ta_dl.mp4" }
+        ],
+        "url": "https://example.com/en_video.mp4",
+        "downloadUrl": "https://example.com/en_dl.mp4"
+    },
+    {
+        "name": "Example Series (Multi-Lang)",
+        "genre": "Drama",
+        "year": "2023",
+        "imdb": "9.0",
+        "sposter": "https://example.com/series_small.jpg",
+        "bposter": "https://example.com/series_big.jpg",
+        "type": "series",
+        "description": "A thrilling series where every episode is localized for you.",
+        "seasons": {
+            "Season 1": [
+                {
+                    "title": "Episode 1: The Arrival",
+                    "sources": [
+                        { "lang": "English", "url": "https://example.com/s1e1_en.mp4", "download": "https://example.com/s1e1_en_dl.mp4" },
+                        { "lang": "Spanish", "url": "https://example.com/s1e1_es.mp4", "download": "https://example.com/s1e1_es_dl.mp4" }
+                    ],
+                    "size": 0.5,
+                    "duration": "45m"
+                },
+                {
+                    "title": "Episode 2: The Secret",
+                    "sources": [
+                        { "lang": "English", "url": "https://example.com/s1e2_en.mp4", "download": "https://example.com/s1e2_en_dl.mp4" },
+                        { "lang": "French", "url": "https://example.com/s1e2_fr.mp4", "download": "https://example.com/s1e2_fr_dl.mp4" }
+                    ],
+                    "size": 0.48,
+                    "duration": "50m"
+                }
+            ]
+        }
+    }
+]

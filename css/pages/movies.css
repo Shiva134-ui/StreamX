@@ -1,0 +1,638 @@
+/* content_area for Player Page */
+.player-layout {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    height: calc(100vh - 80px);
+    /* Adjust based on header height */
+    overflow-y: auto;
+}
+
+/* Tablet & Mobile Optimization */
+@media (max-width: 1024px) {
+    .player-layout {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        overflow-y: visible; /* Let page scroll naturally */
+    }
+
+    .video-section {
+        flex: none;
+        width: 100%;
+    }
+
+    .player-sidebar {
+        min-width: 100%; /* Full width on mobile */
+    }
+    
+    .similar-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .player-layout {
+        padding: 10px;
+        gap: 20px;
+    }
+    
+    .movie-info {
+        padding: 1.2rem;
+    }
+
+    .info-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .meta-tags {
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+    
+    .btn-glass {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Video Section */
+.video-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-container {
+    width: 100%;
+    background: #000;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.video-container video,
+.video-container iframe,
+.video-container .plyr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+/* Metadata */
+.movie-info {
+    color: #fff;
+    background: rgba(30, 30, 30, 0.6);
+    padding: 24px;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.info-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.meta-tags {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #bbb;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+}
+
+.badge-hd {
+    background: white;
+    color: black;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.rating i {
+    color: var(--rating-color, #f2c94c);
+    margin-right: 4px;
+}
+
+.description {
+    line-height: 1.7;
+    color: #d0d0d0;
+    margin-bottom: 24px;
+    font-size: 1rem;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Sidebar (Series & Similar) */
+.player-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 320px;
+}
+
+/* Series / Episodes */
+.series-section h3,
+.similar-section h3 {
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.3rem;
+    border-left: 4px solid var(--primary);
+    padding-left: 12px;
+    font-weight: 700;
+}
+
+.season-select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.season-select:hover { border-color: rgba(255,255,255,0.3); }
+
+.episode-list {
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;
+}
+
+.episode-item {
+    display: flex;
+    gap: 15px;
+    padding: 14px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: slideRight 0.5s var(--transition-normal) both;
+}
+
+.episode-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(6px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.episode-item.active {
+    background: linear-gradient(90deg, rgba(229, 9, 20, 0.2), transparent);
+    border-left: 4px solid var(--primary);
+    transform: translateX(10px);
+}
+
+.ep-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #555;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ep-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: #eee;
+}
+
+.ep-duration {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Play Icon Overlay on Episode Click (Optional) */
+.episode-item.active .ep-number {
+    color: var(--primary);
+}
+
+/* Scrollbar for List */
+.episode-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.episode-list::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+/* Similar Grid in Sidebar */
+.similar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.similar-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-spring);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: scaleIn 0.5s var(--transition-normal) both;
+}
+
+.similar-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 2/3;
+    transition: var(--transition-normal);
+}
+
+.similar-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+/* --- In-Player Episode Drawer (Netflix Style) --- */
+.player-episode-drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 100; /* Above video */
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-episode-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.drawer-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.close-drawer {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: 0.2s;
+}
+
+.close-drawer:hover { color: white; }
+
+.drawer-ep-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;
+}
+
+.drawer-ep-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.drawer-ep-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.drawer-ep-item.active {
+    background: rgba(229, 9, 20, 0.15);
+    border-color: var(--primary);
+}
+
+.drawer-ep-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #666;
+    min-width: 25px;
+    text-align: center;
+}
+
+.drawer-ep-item.active .drawer-ep-number {
+    color: var(--primary);
+}
+
+.drawer-ep-info { flex: 1; }
+
+.drawer-ep-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    color: #eee;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.drawer-ep-info span {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* Scrollbar */
+.drawer-ep-list::-webkit-scrollbar { width: 4px; }
+.drawer-ep-list::-webkit-scrollbar-track { background: transparent; }
+.drawer-ep-list::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+/* Responsive Drawer */
+@media (max-width: 480px) {
+    .player-episode-drawer { width: 100%; border-left: none; }
+}
+
+
+/* --- Plyr Custom Button Fix --- */
+.plyr__control--custom {
+    padding: 7px;
+    font-size: 13px !important;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.plyr__control--custom:hover {
+    background: rgba(0, 179, 255, 0.1); /* Plyr default hover tint */
+    color: var(--plyr-color-main, #00b3ff);
+}
+
+/* --- Next Episode Overlay --- */
+.video-overlay {
+    position: absolute;
+    bottom: 60px; /* Above controls */
+    right: 20px;
+    z-index: 20;
+    pointer-events: none; /* Let clicks pass through unless on button */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.video-overlay.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.next-ep-btn {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: none;
+    transition: transform 0.2s;
+}
+
+.next-ep-btn:hover {
+    transform: scale(1.05);
+    background: var(--primary);
+    color: white;
+}
+
+.countdown-ring {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ddd;
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Placeholder animation */
+}
+
+/* Embed Audio Switcher */
+.embed-control-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: #1a1a1a; /* Solid background instead of blur to avoid artifacts */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.embed-control-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.embed-control-btn i {
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.embed-control-btn:hover i {
+    color: white;
+}
+
+.embed-control-btn span {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.embed-control-btn:hover span {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .embed-control-btn {
+        top: 15px;
+        right: 15px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* --- Embed Toolbar --- */
+.embed-toolbar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeUp 0.3s ease-out;
+}
+
+.embed-tool-btn {
+    background: transparent;
+    border: none;
+    color: #ddd;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    min-width: 36px;
+    justify-content: center;
+}
+
+.embed-tool-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.embed-tool-btn.active {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.embed-tool-btn span {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Theater Mode Logic */
+.player-layout.theater-mode .player-sidebar {
+    display: none;
+}
+
+.player-layout.theater-mode .video-section {
+    flex: 1;
+    max-width: 100%;
+}
+
+.player-layout.theater-mode .video-container {
+    height: 85vh; /* Taller player */
+    max-height: 85vh;
+}
+
+/* Mobile Optimization for Toolbar */
+@media (max-width: 768px) {
+    .embed-toolbar {
+        top: 10px;
+        right: 10px;
+        padding: 4px;
+        gap: 5px;
+        background: rgba(0, 0, 0, 0.7); /* Darker for better visibility */
+    }
+
+    .embed-tool-btn {
+        padding: 8px 10px; /* Larger touch target */
+        min-width: 32px;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust Theater Mode height on mobile to avoid excessive black bars in portrait */
+    .player-layout.theater-mode .video-container {
+        height: auto;
+        aspect-ratio: 16/9;
+        max-height: 80vh;
+    }
+}
