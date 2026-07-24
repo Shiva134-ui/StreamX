@@ -90,13 +90,14 @@ Unlike typical client-heavy web applications that rely on heavy frontend framewo
 
 | Home & Feature Showcase | Custom Video Player & Drawer |
 | :---: | :---: |
-| ![Home Screenshot](/docs/screenshots/home.png) | ![Player Screenshot](/docs/screenshots/player.png) |
+| ![Home Screenshot](./docs/screenshots/home.png) | ![Player Screenshot](./docs/screenshots/player.png) |
 | *StreamX Home Showcase with Hero Backdrop & Movies Row* | *Smart Player with Multi-Language Control & Episode Drawer* |
 
 | Admin Command Center & Ingestion | User Profile & Activity Log |
 | :---: | :---: |
-| ![Admin Screenshot](/docs/screenshots/admin.png) | ![Profile Screenshot](/docs/screenshots/profile.png) |
+| ![Admin Screenshot](./docs/screenshots/admin.png) | ![Profile Screenshot](./docs/screenshots/profile.png) |
 | *Bulk Excel/Google Sheets Content Ingestion Dashboard* | *Profile Editor with CropperJS Modal & Cloudinary Sync* |
+
 
 ---
 
