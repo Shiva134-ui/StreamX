@@ -1,12 +1,15 @@
-# StreamX — Premium Video Streaming & Content Management Platform
+# 🎬 StreamX — Premium Video Streaming & Content Management Platform
 
-![StreamX Banner](https://img.shields.io/badge/StreamX-v1.0.0-e50914?style=for-the-badge&logo=netflix&logoColor=white)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/javascript-ES6%2B-yellow?style=for-the-badge&logo=javascript)
-![Firebase](https://img.shields.io/badge/firebase-v9.22.0-ffca28?style=for-the-badge&logo=firebase)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
+<p align="left">
+  <img src="https://img.shields.io/badge/StreamX-v1.0.0-E50914?style=for-the-badge&logo=netflix&logoColor=white" alt="StreamX Version" />
+  <img src="https://img.shields.io/badge/Build-Passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript ES6+" />
+  <img src="https://img.shields.io/badge/Firebase-v9.22.0-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/License-MIT-007ACC?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License MIT" />
+</p>
 
 StreamX is a lightweight, zero-framework, production-ready video streaming and web management application. Built entirely with Vanilla HTML5, CSS3 Glassmorphism design system, and ES6 JavaScript Modules, StreamX delivers a fluid, Netflix-grade streaming experience powered by a Firebase Firestore backend, real-time auth, multi-language audio source management, interactive media playback, and an administrative bulk-ingestion engine.
+
 
 ---
 
@@ -95,10 +98,12 @@ Unlike typical client-heavy web applications that rely on heavy frontend framewo
 
 ---
 
-## Live Demo
+## 🚀 Live Demo & Repository
 
-> **Live Deployment Link**: *(Placeholder — Deploy to GitHub Pages, Netlify, or Vercel)*  
-> `https://your-username.github.io/StreamX/`
+> [!TIP]
+> **GitHub Repository**: [github.com/Shiva134-ui/StreamX](https://github.com/Shiva134-ui/StreamX)  
+> *StreamX is optimized for zero-configuration static deployment on GitHub Pages, Netlify, Vercel, or Firebase Hosting.*
+
 
 ---
 
@@ -642,5 +647,6 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 **Madesh S**  
 *Senior Frontend & Cloud Engineer*  
 - **Email**: `sivamadesh.134@gmail.com`
-- **GitHub**: [github.com/madesh-dev](https://github.com/madesh-dev) *(Placeholder)*
-- **Project Repo**: [github.com/madesh-dev/StreamX](https://github.com/madesh-dev/StreamX) *(Placeholder)*
+- **GitHub**: [github.com/Shiva134-ui](https://github.com/Shiva134-ui)
+- **Project Repo**: [github.com/Shiva134-ui/StreamX](https://github.com/Shiva134-ui/StreamX)
+
